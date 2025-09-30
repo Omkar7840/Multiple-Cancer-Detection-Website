@@ -71,12 +71,16 @@ const CancerDetection: React.FC<CancerDetectionProps> = ({ cancerTypes }) => {
     formData.append("file", selectedFile);
 
     try {
-      const response = await fetch(
-        `http://localhost:5000/analyze/${currentCancer.id}`,
-        {
-          method: "POST",
-          body: formData,
-        }
+      const API_BASE = process.env.REACT_APP_API_BASE;
+
+const response = await fetch(
+  `${API_BASE}/analyze/${currentCancer.id}`,
+  {
+    method: "POST",
+    body: formData,
+  }
+);
+
       );
 
       const data = await response.json();
